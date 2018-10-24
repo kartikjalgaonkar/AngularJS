@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!-- <script
+
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script> -->
+	<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.6/angular.js"></script>
+	<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.6/angular.min.js"></script>
+	<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.6/angular-route.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>	
+<!-- <script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script> -->
+</head>
+<body data-ng-app="myApp" data-ng-controller="employeeController">
+<div data-ng-init="myVar = 'yash_logo.png'">
+<img data-ng-src="{{myVar}}" class="img-rounded">
+</div>
+	<div class="container">
+
+		<p align="center">
+			<a href="#!home">HOME</a> 
+			<a href="#!aboutUs">ABOUT US</a> 
+			<a href="#!contact">CONTACT</a>
+		</p>
+		<br>
+		<div class="row" align="right">
+			<input type="text" ng-model="serachData" align="right" />
+			<button>Search</button>
+		</div>
+		<br>
+		<div ng-view></div>
+		<div class="row">
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>Id</th>
+						<th>Gender</th>
+						<th>Name</th>
+						<th>Assigned By</th>
+						<th>Task</th>
+						<th>Status</th>
+						<th>Operation</th>
+					</tr>
+				</thead>
+				<tr ng-repeat="x in myHttpData | filter : serachData">
+				
+					<td><span>{{x.employeeId}}</span>
+					<!-- <input type="text" data-ng-show="editMode" data-ng-model="x.employeeId" data-ng-required /> -->
+					</td>	
+					
+					<td><span data-ng-hide="editMode">{{x.gender}}</span>
+					<input type="text" data-ng-show="editMode" data-ng-model="x.gender" data-ng-required />
+					</td>
+					
+					<td><span data-ng-hide="editMode">{{x | genderFilter }}</span>
+					<input type="text" data-ng-show="editMode" data-ng-model="x.employeeName" data-ng-required />
+					</td>
+					
+					<td><span data-ng-hide="editMode">{{x.assignedBy}}</span>
+					<input type="text" data-ng-show="editMode" data-ng-model="x.assignedBy" data-ng-required />
+					</td>
+					
+					<td><span data-ng-hide="editMode">{{x.task}}</span>
+					<input type="text" data-ng-show="editMode" data-ng-model="x.task" data-ng-required />
+					</td>
+					
+					<td><span data-ng-hide="editMode">{{x.status}}</span>
+					<input type="text" data-ng-show="editMode" data-ng-model="x.status" data-ng-required />
+					</td>
+					<td>
+					
+					<button type="submit" data-ng-hide="editMode" data-ng-click="editMode = true;" class="btn btn-default">Edit</button>
+            		<button type="submit" data-ng-show="editMode" data-ng-click="editMode = false; saveData(x)" class="btn btn-default">Save</button>
+            		<button type="submit" data-ng-hide="editMode" data-ng-click="editMode = false; deleteData(x.employeeId)" class="btn btn-default">Delete</button> 
+				</tr>
+			</table>
+		</div>
+	</div>
+	
+	<script>
+/* 	angular.module("myApp", []).config(function($routeProvider) {
+		console.log("routing");
+		$routeProvider.when("/home", {
+			templateUrl : "home.html"
+		}).when("/aboutUs", {
+			templateUrl : "aboutUs.html"
+		}).when("/contact", {
+			templateUrl : "contact.html"
+		});
+	});  */
+		/* app1.config(function($routeProvider) {
+			console.log("routing");
+			$routeProvider.when("/home", {
+				templateUrl : "home.html"
+			}).when("/aboutUs", {
+				templateUrl : "aboutUs.html"
+			}).when("/contact", {
+				templateUrl : "contact.html"
+			});
+		});  */
+		
+		
+	</script>
+	<script type="text/javascript" src="employeeController.js"></script>
+</body>
+</html>
+
+
+
+
